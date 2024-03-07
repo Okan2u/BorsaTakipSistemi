@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Özel CSS Stilleri */
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Web Uygulaması</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% if gecerli_kullanici %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-success" href="#">Çıkış Yap</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" href="/giris-yap">Giriş Yap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger" href="/uye-ol">Üye Ol</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Ana İçerik -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center mt-5">
+            <h1>Hoş Geldiniz</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Hisse 1</h5>
+                    <p class="card-text">Hisse 1 ile ilgili detaylar</p>
+                    <a href="#" class="btn btn-info">Detayları Gör</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Hisse 2</h5>
+                    <p class="card-text">Hisse 2 ile ilgili detaylar</p>
+                    <a href="#" class="btn btn-info">Detayları Gör</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Hisse 3</h5>
+                    <p class="card-text">Hisse 3 ile ilgili detaylar</p>
+                    <a href="#" class="btn btn-info">Detayları Gör</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript ve JS ile -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
