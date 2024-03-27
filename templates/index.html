@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anasayfa</title>
-    <!-- Bootstrap CSS -->
+    <title>Borsa Takip Sistemi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Özel CSS Stilleri */
         body {
             padding-top: 60px;
         }
     </style>
 </head>
 <body>
-
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Web Uygulaması</a>
+        <a class="navbar-brand" href="/">Anasayfa</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,22 +23,20 @@
             <ul class="navbar-nav ms-auto">
                 {% if gecerli_kullanici %}
                     <li class="nav-item">
-                        <a class="nav-link btn btn-success" href="#">Çıkış Yap</a>
+                        <a class="nav-link" href="/cikis-yap">Çıkış Yap</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary" href="/giris-yap">Giriş Yap</a>
+                        <a class="nav-link" href="/giris-yap">Giriş Yap</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-danger" href="/uye-ol">Üye Ol</a>
+                        <a class="nav-link" href="/uye-ol">Üye Ol</a>
                     </li>
                 {% endif %}
             </ul>
         </div>
     </div>
 </nav>
-
-<!-- Ana İçerik -->
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center mt-5">
@@ -53,8 +47,8 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Hisse 1</h5>
-                    <p class="card-text">Hisse 1 ile ilgili detaylar</p>
+                    <h5 class="card-title">Dolar</h5>
+                    <p class="card-text" id="dolar_detaylari">{{ dolar_detaylari }}</p>
                     <a href="#" class="btn btn-info">Detayları Gör</a>
                 </div>
             </div>
@@ -79,8 +73,40 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function getFiyat() {
+            $.ajax({
+                url: "/fiyat_güncelle",
+                type: "GET",
+                success: function(response) {
+                    var yeniFiyat = response.dolar_detaylari;
+                    var eskiFiyat = $('#dolar_detaylari').text();
 
-<!-- Bootstrap JavaScript ve JS ile -->
+                    // Eski fiyat yoksa veya fiyat değiştiyse
+                    if (!eskiFiyat || yeniFiyat !== eskiFiyat) {
+                        // Yeni fiyatı HTML elementine güncelle
+                        $('#dolar_detaylari').text(yeniFiyat);
+
+                        // Eski fiyat yoksa veya fiyat arttıysa yeşil, azaldıysa kırmızı renk kullan
+                        if (!eskiFiyat || parseFloat(yeniFiyat) > parseFloat(eskiFiyat)) {
+                            $('#dolar_detaylari').css('color', 'green');
+                        } else {
+                            $('#dolar_detaylari').css('color', 'red');
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+
+        getFiyat();
+        setInterval(getFiyat, 3000);
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
