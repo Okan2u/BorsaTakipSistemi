@@ -23,7 +23,7 @@ def veri_cikar():
     driver.delete_all_cookies()
 
     driver.get("https://tr.tradingview.com/chart/?symbol=FX_IDC%3AUSDTRY")
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(3)
 
     # Koleksiyonda sadece bir belge tutma
     doc_id = 1
