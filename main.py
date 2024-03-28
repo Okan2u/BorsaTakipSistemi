@@ -39,7 +39,7 @@ def veri_cikar():
         sleep(3)
 
 @app.route('/')
-def fiyat_cek():
+def index():
     # MongoDB'den anlık fiyatı çekme
     fiyat_verisi = fiyat_collection.find_one({'_id': 1})
     if fiyat_verisi:
@@ -48,7 +48,7 @@ def fiyat_cek():
         dolar_detaylari = "Veri bulunamadı"
 
     # HTML sayfasına fiyat verisini ileterek render etme
-    return render_template('index.html', dolar_detaylari=dolar_detaylari)
+    return render_template('index.html', dolar_detaylari=dolar_detaylari, gecerli_kullanici=session.get('gecerli_kullanici', False))
 
 @app.route('/fiyat_güncelle')
 def fiyat_güncelle():
@@ -91,7 +91,6 @@ def cikis_yap():
     session.pop('gecerli_kullanici', None)
     flash('Oturumunuz kapatıldı', 'info')
     return redirect(url_for('index'))
-
 
 if __name__ == "__main__":
     veri_cikar_thread = Thread(target=veri_cikar)

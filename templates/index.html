@@ -8,6 +8,46 @@
     <style>
         body {
             padding-top: 60px;
+            font-family: Arial, sans-serif;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            width: 100%;
+            text-align: center;
+        }
+        .navbar-nav .nav-item {
+            width: 100%;
+            position: relative;
+        }
+        .navbar-nav .nav-item:hover ul {
+            display: block;
+        }
+        .navbar-nav .nav-item ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #343a40;
+            width: max-content;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .navbar-nav .nav-item ul li {
+            width: 100%;
+        }
+        .navbar-nav .nav-item ul li a {
+            display: block;
+            padding: 10px;
+            color: #fff;
+            width: 100%;
+        }
+        .navbar-nav .nav-item ul li a:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -21,6 +61,46 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Borsa</a>
+                    <ul>
+                        <li><a href="#">Borsa Alt Başlık 1</a></li>
+                        <li><a href="#">Borsa Alt Başlık 2</a></li>
+                        <li><a href="#">Borsa Alt Başlık 3</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Döviz</a>
+                    <ul>
+                        <li><a href="#">Döviz Alt Başlık 1</a></li>
+                        <li><a href="#">Döviz Alt Başlık 2</a></li>
+                        <li><a href="#">Döviz Alt Başlık 3</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Faizler</a>
+                    <ul>
+                        <li><a href="#">Faizler Alt Başlık 1</a></li>
+                        <li><a href="#">Faizler Alt Başlık 2</a></li>
+                        <li><a href="#">Faizler Alt Başlık 3</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Haberler</a>
+                    <ul>
+                        <li><a href="#">Haberler Alt Başlık 1</a></li>
+                        <li><a href="#">Haberler Alt Başlık 2</a></li>
+                        <li><a href="#">Haberler Alt Başlık 3</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Analiz</a>
+                    <ul>
+                        <li><a href="#">Analiz Alt Başlık 1</a></li>
+                        <li><a href="#">Analiz Alt Başlık 2</a></li>
+                        <li><a href="#">Analiz Alt Başlık 3</a></li>
+                    </ul>
+                </li>
                 {% if gecerli_kullanici %}
                     <li class="nav-item">
                         <a class="nav-link" href="/cikis-yap">Çıkış Yap</a>
@@ -38,39 +118,50 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 text-center mt-5">
-            <h1>Hoş Geldiniz</h1>
-        </div>
-    </div>
     <div class="row mt-5">
-        <div class="col-md-4">
+        <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Dolar</h5>
+                    <h2 class="card-title">Dolar</h2>
                     <p class="card-text" id="dolar_detaylari">{{ dolar_detaylari }}</p>
                     <a href="#" class="btn btn-info">Detayları Gör</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Hisse 2</h5>
-                    <p class="card-text">Hisse 2 ile ilgili detaylar</p>
-                    <a href="#" class="btn btn-info">Detayları Gör</a>
-                </div>
-            </div>
+    </div>
+
+    <!-- Borsa Tablosu -->
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <h2>Borsa</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Şirket</th>
+                        <th scope="col">Değer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>ABC Company</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>XYZ Corporation</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>123 Inc.</td>
+                        <td>$80</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Hisse 3</h5>
-                    <p class="card-text">Hisse 3 ile ilgili detaylar</p>
-                    <a href="#" class="btn btn-info">Detayları Gör</a>
-                </div>
-            </div>
-        </div>
+        <!-- Diğer Tabloları Buraya Ekleyebilirsiniz -->
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -89,11 +180,16 @@
                         // Yeni fiyatı HTML elementine güncelle
                         $('#dolar_detaylari').text(yeniFiyat);
 
+                        // Navbar içindeki dolar linkini güncelle
+                        $('#dolar_link').text('Dolar: ' + yeniFiyat);
+
                         // Eski fiyat yoksa veya fiyat arttıysa yeşil, azaldıysa kırmızı renk kullan
                         if (!eskiFiyat || parseFloat(yeniFiyat) > parseFloat(eskiFiyat)) {
                             $('#dolar_detaylari').css('color', 'green');
+                            $('#dolar_link').css('color', 'green');
                         } else {
                             $('#dolar_detaylari').css('color', 'red');
+                            $('#dolar_link').css('color', 'red');
                         }
                     }
                 },
